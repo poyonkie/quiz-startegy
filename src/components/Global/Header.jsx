@@ -1,5 +1,6 @@
 // Dependences
-import React, { Component } from 'react';
+import React, { /* Component */ } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Assets
@@ -39,7 +40,9 @@ const Header = props => <header className="Header">
     <img src={logo} className="Header-logo" alt="logo" />
     <h1 className="Header-title">{ props.title }</h1>
     <ul className="Menu">
-      { props.items && props.items.map((item, key) => <li key={key}>{ item.title }</li>) }
+      { props.items
+        && props.items.map((item, key) => <li key={key}><Link to={ item.url }>{ item.title }</Link></li>)
+      }
     </ul>
   </header>
 

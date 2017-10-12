@@ -27,6 +27,15 @@
   border-left: 1px #555555 solid;
 }
 
+.Menu li a {
+  color: #c9c9c9;
+  text-decoration: none;
+}
+
+.Menu li a:hover {
+  color: white;
+}
+
 .Menu li:first-child {
   border-left: none;
 }
