@@ -1,4 +1,4 @@
-// Dependences
+// Dependencies
 import express from 'express';
 
 // Data
