@@ -7,11 +7,15 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import open from 'open';
 import exphbs from 'express-handlebars';
 
+// Config
+import config from '../config';
+
 // Webpack configuration
 import webpackConfig from '../../webpack.config.babel';
 
 // API
 import membersApi from './api/members.js';
+import galleryApi from './api/gallery.js';
 
 // Helpers
 import * as hbsHelper from '../lib/handlebars';
@@ -22,9 +26,6 @@ import { isMobile } from '../lib/utils/device';
 // Environment
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-// Server Port
-const port = 3000;
-
 // Express App
 const app = express();
 
@@ -32,14 +33,14 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, '../public')));
 
 // Handlebars setup
-app.engine('.hbs', exphbs({
-  extname: '.hbs',
+app.engine(config.views.engine, exphbs({
+  extname: config.views.extension,
   helpers: hbsHelper
 }));
 
 // View Engine Setup
-app.set('views', path.resolve(__dirname, './views'));
-app.set('view engine', '.hbs');
+app.set('views', path.resolve(__dirname, config.views.path));
+app.set('view engine', config.views.engine);
 
 // Webpack Compiler
 const webpackCompiler = webpack(webpackConfig);
@@ -58,6 +59,7 @@ app.use((req, res, next) => {
 
 // API dispatch
 app.use('/api/members', membersApi);
+app.use('/api/gallery', galleryApi);
 
 // Sending all traffic to React
 app.get('*', (req, res) => {
@@ -67,8 +69,8 @@ app.get('*', (req, res) => {
 });
 
 // Listen port
-app.listen(port, err => {
+app.listen(config.serverPort, err => {
   if(!err){
-    open(`http://localhost:${port}`);
+    open(`${config.baseUrl}`);
   }
 })

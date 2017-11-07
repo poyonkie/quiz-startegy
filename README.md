@@ -1,6 +1,9 @@
-- Redux beginning config and connect. Take a look on 'configureStore.js', specifically 'injectMiddleware' function
+- Add query-string to allow transforms string query to object and backwards
 
-	https://medium.com/@meagle/understanding-87566abcfb7a
+- Enhance project config. Pull apart constants config data
 
-- First Container & reducer
+- Several helper utils 'lib/utils'
 
+- polyfill 'Object.asign'
+
+- Add Redux Gallery Container and own dependencies
