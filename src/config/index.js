@@ -8,5 +8,10 @@ export default {
     engine: '.hbs',
     extension: '.hbs',
     path: './views'
+  },
+  aliasResolve: {
+    CONST_api: 'constants/api',
+    API: 'lib/utils/api',
+    Utils_FE: 'lib/utils/frontend'
   }
 }

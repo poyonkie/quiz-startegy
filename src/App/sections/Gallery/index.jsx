@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import * as actions from './actions';
 
 // Utils
-import { isFirstRender } from '../../lib/utils/frontend';
+import { isFirstRender } from 'Utils_FE';
 
 class Gallery extends Component {
   static propTypes = {

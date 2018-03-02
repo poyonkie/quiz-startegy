@@ -2,15 +2,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-// Components
-import App from './components/App';
-import Brief from './components/Brief';
-import Page404 from './components/Page404';
+// Grls
+import App from './App';
+import Page404 from './App/Page404';
 
-// Containers
-import Home from './containers/Home';
-import Gallery from './containers/Gallery';
+// Sections
+import Home from './App/sections/Home';
+import Gallery from './App/sections/Gallery';
+import Brief from './App/sections/Brief';
 
+// Routes
 const AppRoutes = () =>
   <App>
     <Switch>

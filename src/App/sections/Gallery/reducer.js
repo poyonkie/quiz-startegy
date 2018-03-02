@@ -1,5 +1,5 @@
 // Utils
-import { getNewState } from '../../lib/utils/frontend';
+import { getNewState } from 'Utils_FE';
 
 const initialState = {
   pictures: [],

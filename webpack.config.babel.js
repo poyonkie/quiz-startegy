@@ -3,6 +3,9 @@ import webpack from 'webpack';
 import path from 'path';
 import ChunksPlugin from 'webpack-split-chunks';
 
+// Config
+import config from './src/config';
+
 // Paths
 const PATHS = {
   index: path.resolve(__dirname, 'src/index'),
@@ -34,10 +37,10 @@ const getOutput = () => ({
 
 const getPlugins = () => {
   const plugins = [
-    new ChunksPlugin({
-      to: 'vendor',
-      test: /node_modules/
-    })
+    //new ChunksPlugin({
+    //  to: 'vendor',
+    //  test: /node_modules/
+    //})
   ];
   if (isDevelopment) {
     plugins.push(
@@ -85,7 +88,8 @@ const getResolve = () => ({
   modules: [
     "node_modules",
     PATHS.base
-  ]
+  ],
+  alias: config.aliasResolve
 });
 
 // Webpack Config

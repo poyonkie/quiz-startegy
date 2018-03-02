@@ -1,9 +1,27 @@
-- Add query-string to allow transforms string query to object and backwards
+# Quiz beginning - basic scaffolding.
 
-- Enhance project config. Pull apart constants config data
+> 'React' & 'Redux'.
 
-- Several helper utils 'lib/utils'
 
-- polyfill 'Object.asign'
+## Installation
 
-- Add Redux Gallery Container and own dependencies
+```javascript
+// USE OF '6.11.3' NODE VERSION. NVM RECOMENDED
+npm install
+```
+
+## Usage
+
+```javascript
+// Launches the APP in localhost on development mode.
+npm start
+
+// Performs tasks to join, minify and uglify the code base and build DIST folder bundle.
+npm build
+
+// Launches the APP in localhost on production mode.
+npm production
+
+## Summary
+
+!!!.

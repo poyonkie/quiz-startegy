@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Asets
-import './Global/css/App.css';
+import './_globals/css/App.css';
 
 // Components
-import Header from './Global/Header';
-import Footer from './Global/Footer';
-import Content from './Global/Content';
+import Header from './_globals/Header';
+import Footer from './_globals/Footer';
+import Content from './_globals/Content';
 
 import items from '../data/menu';
 

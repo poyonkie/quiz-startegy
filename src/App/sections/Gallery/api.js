@@ -1,8 +1,8 @@
 // Constants
-import { API } from '../../constants/api';
+import { API } from 'CONST_api';
 
 // Utils
-import { apiFetch } from '../../lib/utils/api';
+import { apiFetch } from 'API';
 
 class GalleryApi {
   static getAllPictures() {
