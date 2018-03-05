@@ -16,7 +16,7 @@ export function arrayToObject(array) {
 };
 
 export function getFormData(formData, returnElementsArray = false) {
-  const validTypes = ['text', 'number', 'checkbox', 'password', 'radio', 'color', 'date', 'datetime', 'datetime-local', 'email', 'month', 'number', 'range', 'search', 'tel', 'time', 'url', 'week'];
+  const validTypes = ['text', 'hidden', 'number', 'checkbox', 'password', 'radio', 'color', 'date', 'datetime', 'datetime-local', 'email', 'month', 'number', 'range', 'search', 'tel', 'time', 'url', 'week'];
   const testValidTypes = elemnType => validTypes.reduce((bffr, itm) => {
     return itm === elemnType || bffr;
   }, false);
@@ -35,7 +35,8 @@ export function getFormData(formData, returnElementsArray = false) {
 
   // input
   const dataForm = Object.values(_formData)
-    .filter( (eleForm, idx, arry) => eleForm.name &&  arry.indexOf(eleForm) === idx && testValidTypes(eleForm.type) );
+    .filter( (eleForm, idx, arry) => eleForm.name &&  arry.indexOf(eleForm) === idx && testValidTypes(eleForm.type) )
+    .filter( eleForm => eleForm.type === 'radio' ? (eleForm.checked === true || false) : true);
 
   const altogetherCollection = dataForm.concat(textareaCollection).concat(selectCollection);
   let jsonBulid = altogetherCollection.map( ele => ({ [ele.name]: ele.value }));

@@ -7,6 +7,7 @@ const PRODUCTS_SINGLE_DETAIL = 'PRODUCTS_SINGLE_DETAIL';
 const PRODUCTS_ADD = 'PRODUCTS_ADD';
 const PRODUCTS_EDIT = 'PRODUCTS_EDIT';
 const PRODUCTS_FILTER = 'PRODUCTS_FILTER';
+const PRODUCTS_REMOVE = 'PRODUCTS_REMOVE';
 
 export function loadProducts() {
   return {
@@ -33,5 +34,12 @@ export function addProduct(dataForm) {
   return {
      type: PRODUCTS_ADD,
      payload: dataForm
+   }
+}
+
+export function removeProduct(id) {
+  return {
+     type: PRODUCTS_REMOVE,
+     payload: id
    }
 }

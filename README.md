@@ -1,4 +1,4 @@
-# Products Redux store connected and actions products made.
+# Quiz requirement implemented.
 
 > 'React' & 'Redux'.
 

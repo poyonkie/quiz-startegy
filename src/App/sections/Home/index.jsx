@@ -11,7 +11,7 @@ class Home extends Component {
   render() {
     const { isMobile } = this.props;
     return (
-      <div>
+      <div style={{textAlign: 'center'}}>
       Home today!!!
       <p>{isMobile ? 'Mobile Device': 'Desktop Device'}</p>
       </div>

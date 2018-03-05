@@ -1,15 +1,13 @@
 .ControlBar {
   width: 100%;
   display: inline-block;
-  border: solid 1px red;
+  background-color: gray;
 }
 
 .ControlBar .top {
   width: 100%;
   display: flex;
   justify-content: space-between;
-
-  border: dotted 1px red;
 }
 
 .ControlBar .head-title {

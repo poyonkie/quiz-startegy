@@ -65,7 +65,9 @@ class Products extends Component {
    * React methods
    */
   componentWillMount() {
-    this.props.loadProducts();
+    if (!this.props.products.length > 0) {
+      this.props.loadProducts();
+    }
   }
 
   /*
@@ -76,7 +78,20 @@ class Products extends Component {
   }
 
   productItemEventHandler(event) {
-    this.renderModal('edit', { editId: event.target.value, modalTitle: `Edit product ${event.target.value}` });
+    switch(event.target.textContent.toLowerCase()) {
+      case 'edit': {
+        this.renderModal('edit', { editId: event.target.value, modalTitle: `Edit product ${event.target.value}` });
+        break;
+      }
+
+      case 'delete': {
+        this.props.removeProduct(event.target.value);
+        break;
+      }
+
+      default:
+        return null;
+    }
   }
 
   addProductHandleSubmit(event) {
@@ -84,7 +99,9 @@ class Products extends Component {
     if (this.state.editId) {
       this.props.editProduct(arrayToObject(dataForm));
     } else {
-      this.props.addProduct(arrayToObject(dataForm));
+      const { products } = this.props;
+      const lastProductId = products[products.length-1].id;
+      this.props.addProduct({...arrayToObject(dataForm), id:lastProductId+1, status:'default'});
     }
     this.setState({showModal:false});
     event.preventDefault();
@@ -116,7 +133,7 @@ class Products extends Component {
     }
 
     const _products = navMenuActiveItem === 'all'
-      ? products
+      ? products.filter( product => product.status !== 'trash' )
       : products.filter( product => product.status === navMenuActiveItem );
 
     return (
@@ -136,7 +153,7 @@ class Products extends Component {
         */}
         <ItemList
           itemList={ _products }>
-          <ProductItem customEvent={this.productItemEventHandler} />
+          <ProductItem onEdit={this.productItemEventHandler} onDelete={this.productItemEventHandler} />
         </ItemList>
         <PaginatorBar chainedData={_products} />
 
