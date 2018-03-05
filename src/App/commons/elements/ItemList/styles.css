@@ -1,8 +1,6 @@
 .ItemList {
   width: 100%;
   display: inline-block;
-
-  border: solid 1px orange;
 }
 
 .ItemList .default-template, .ItemList ul {
@@ -14,5 +12,5 @@
 
 .ItemList .default-template td {
   padding: 4px;
-  border: dotted gray 1px;
+  border: solid gray 1px;
 }

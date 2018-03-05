@@ -4,6 +4,37 @@
 }
 
 .ProductItem {
-  border: dotted 1px blue;
+  border-top: solid 1px #999999;
+  border-bottom: solid 1px #f0f0f0;
+  background-color: #dfdfdf;
   padding: 15px;
+  display: flex;
+}
+
+.ProductItem > div {
+  float: left;
+  justify-content: space-between;
+  padding: 0 7px;
+}
+
+.ProductItem > div span {
+  color: #666666;
+  font-size: .9em;
+}
+
+.ProductItem span .public {
+  color: green;
+}
+
+.ProductItem span .default {
+  color: orange;
+}
+
+.ProductItem span .trash {
+  color: red;
+}
+
+/* FormModelBaseProducItem */
+.FormModelBaseProducItem {
+
 }

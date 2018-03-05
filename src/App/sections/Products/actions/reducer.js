@@ -4,6 +4,7 @@ const PRODUCTS_SINGLE_DETAIL = 'PRODUCTS_SINGLE_DETAIL';
 const PRODUCTS_ADD = 'PRODUCTS_ADD';
 const PRODUCTS_EDIT = 'PRODUCTS_EDIT';
 const PRODUCTS_FILTER = 'PRODUCTS_FILTER';
+const PRODUCTS_REMOVE = 'PRODUCTS_REMOVE';
 
 const initialState = {
   list: [],
@@ -34,6 +35,12 @@ export default function productReducer(state = initialState, action) {
     case `${PRODUCTS_EDIT}`: {
       const { payload= [] } = action;
       const list = state.list.map( product => parseInt(product.id) === parseInt(payload.id) ? payload : product );
+      return {...state, list };
+    }
+
+    case `${PRODUCTS_REMOVE}`: {
+      const { payload= [] } = action;
+      const list = state.list.map( product => parseInt(product.id) === parseInt(payload) ? {...product, status:'trash'} : product);
       return {...state, list };
     }
 

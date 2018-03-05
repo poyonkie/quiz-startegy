@@ -1,4 +1,4 @@
-# Products Redux store connected and actions products made.
+# Quiz requirement implemented.
 
 > 'React' & 'Redux'.
 
@@ -21,6 +21,7 @@ npm build
 
 // Launches the APP in localhost on production mode.
 npm production
+```
 
 ## Summary
 Basic dependencies scaffolding to build any section
