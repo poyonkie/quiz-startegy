@@ -1,0 +1,9 @@
+/* Custom elements style */
+.mainNavMenuStyle {
+  border: dotted 1px blue;
+}
+
+.ProductItem {
+  border: dotted 1px blue;
+  padding: 15px;
+}

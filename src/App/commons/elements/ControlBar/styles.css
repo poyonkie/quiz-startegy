@@ -1,0 +1,38 @@
+.ControlBar {
+  width: 100%;
+  display: inline-block;
+  border: solid 1px red;
+}
+
+.ControlBar .top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  border: dotted 1px red;
+}
+
+.ControlBar .head-title {
+  padding: 5px 15px 2px;
+  margin: 0;
+}
+
+.ControlBar ul {
+  padding: 0 15px;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ControlBar ul .separator {
+  padding-top: 3px;
+  margin: 0 10px;
+}
+
+.ControlBar li {
+  list-style: none;
+}
+
+.ControlBar li.active{
+  opacity: .5;
+}
