@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // Utils
-import { getFormData } from 'Utils_FE';
+import { getFormData, isFirstRender, arrayToObject } from 'Utils_FE';
 
 // Elements
 import ControlBar from 'ControlBar';
@@ -25,23 +25,15 @@ const { SECTIONS:{PRODUCTS:_CONST} } = CONSTANTS;
 // Assets
 import './styles.css';
 
-const itemList = [
-            {title: 'uno', id: '1', value: 'some value'},
-            {title: 'dos', id: '2', value: 'some value'},
-            {title: 'tres', id: '3', value: 'some value'},
-            {title: 'cuatro', id: '4', value: 'some value'},
-            {title: 'cinco', id: '5', value: 'some value'},
-            {title: 'seis', id: '6', value: 'some value'},
-            {title: 'seis', id: '6', value: 'some value'},
-            {title: 'seis', id: '6', value: 'some value'},
-          ]
+// Actions
+import * as actions from './actions';
 
 const navMenu = [
-            {title: 'uno', value: '1'},
-            {title: 'dos', value: '2'},
-            {title: 'tres', value: '3'},
+            {title: 'All', value: 'all'},
+            {title: 'Public', value: 'public'},
+            {title: 'Default', value: 'default'},
             null,
-            {title: 'cuatro', value: '4'},
+            {title: 'Trash', value: 'trash'},
           ]
 
 const navMenuStyle = 'navMenuStyle';
@@ -55,7 +47,7 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      navMenuActiveItem: 0,
+      navMenuActiveItem: 'all',
       showModal: false,
       modalTitle: 'Init modal state',
       modalGuestTemplate: null,
@@ -69,20 +61,33 @@ class Products extends Component {
     this.renderModal = this.renderModal.bind(this);
   }
 
+  /*
+   * React methods
+   */
+  componentWillMount() {
+    this.props.loadProducts();
+  }
+
+  /*
+   * Own methods
+   */
   controlBarMenuHandler(event) {
     this.setState({ navMenuActiveItem: event.target.value });
   }
 
   productItemEventHandler(event) {
-    console.log('productItemEventHandler >', event.target.value);
-    this.renderModal('edit', { editId: event.target.value });
+    this.renderModal('edit', { editId: event.target.value, modalTitle: `Edit product ${event.target.value}` });
   }
 
   addProductHandleSubmit(event) {
     const dataForm = getFormData(event.target);
+    if (this.state.editId) {
+      this.props.editProduct(arrayToObject(dataForm));
+    } else {
+      this.props.addProduct(arrayToObject(dataForm));
+    }
+    this.setState({showModal:false});
     event.preventDefault();
-
-    console.log('A product was submitted: ', dataForm);
   }
 
   addProductHandleCancel(event) {
@@ -102,9 +107,17 @@ class Products extends Component {
   }
 
   render() {
-    const { navMenuActiveItem, modalTitle, showModal, modalGuestTemplate:Guest, editId } = this.state
+    const { navMenuActiveItem, modalTitle, showModal, modalGuestTemplate:Guest, editId } = this.state;
+    const { products } = this.props;
     const { TITLE } = _CONST;
-    const guestProps = itemList.find(i => i.id === editId) || null;
+    const guestProps = products.find(i => parseInt(i.id) === parseInt(editId)) || null;
+    if (!isFirstRender(products)) {
+      return null;
+    }
+
+    const _products = navMenuActiveItem === 'all'
+      ? products
+      : products.filter( product => product.status === navMenuActiveItem );
 
     return (
       <div>
@@ -114,35 +127,29 @@ class Products extends Component {
           menuHandler={ this.controlBarMenuHandler }
           navMenuActiveItem={ navMenuActiveItem }
           navMenuStyle={ navMenuStyle }>
-
-          custom controls or whatever
-          <button onClick={ () => this.setState({showModal:true, modalGuestTemplate:null})}>Open Modal</button>
-          <button onClick={ () => this.renderModal('add', {editId:null}) }>Add Product</button>
-
+          <button onClick={ () => this.renderModal('add', {editId:null, modalTitle: `Add product`}) }>Add Product</button>
         </ControlBar>
 
-        <PaginatorBar chainedData={itemList} />
+        <PaginatorBar chainedData={_products} />
         {/*
-          <FilterBar chainedData={itemList} />
+          <SortBar chainedData={_products} />
         */}
         <ItemList
-          itemList={ itemList }>
+          itemList={ _products }>
           <ProductItem customEvent={this.productItemEventHandler} />
         </ItemList>
-        <PaginatorBar chainedData={itemList} />
+        <PaginatorBar chainedData={_products} />
 
         <Modal
           title={ modalTitle }
           showModal={ showModal }
           onClose={ () => this.setState({showModal:false}) }
-          //onAcept={ evt => console.log('ACEPT', evt.target) }
-          //onCancel={ this.addProductHandleCancel }
           >
           { Guest
             ? <FormWrapper
                 onSubmit={ this.addProductHandleSubmit }
                 onCancel={ this.addProductHandleCancel }>
-                <Guest {...guestProps} />
+                <Guest {...guestProps} titleLabel='Title' contentLabel='Content' />
               </FormWrapper>
             : <span>º- Modal container -º</span>}
         </Modal>
@@ -151,4 +158,7 @@ class Products extends Component {
   }
 }
 
-export default Products;
+export default connect(state => ({
+  products: state.products.list,
+  currentProduct: state.products.detail,
+}), actions)(Products);

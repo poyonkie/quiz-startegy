@@ -1,4 +1,4 @@
-# Quiz beginning - basic scaffolding.
+# Products Redux store connected and actions products made.
 
 > 'React' & 'Redux'.
 
@@ -6,7 +6,7 @@
 ## Installation
 
 ```javascript
-// USE OF '6.11.3' NODE VERSION. NVM RECOMENDED
+// USE '6.11.3' NODE VERSION RECOMENDED.
 npm install
 ```
 
@@ -39,7 +39,7 @@ import PropTypes from 'prop-types';
  * - getFormData(event, true) - Return data elements array.
  * - getFormData(event, 'all') - [Return JSON, Return data elements array].
  */
-import { getFormData } from 'Utils_FE';
+import { getFormData, isFirstRender, arrayToObject } from 'Utils_FE';
 
 // Elements
 /*

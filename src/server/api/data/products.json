@@ -1,0 +1,74 @@
+{
+  "response": [
+    {
+      "groupProductId": 1,
+      "id": 1,
+      "title": "accusamus beatae ad facilis cum similique qui sunt",
+      "content": "Nulla non ultricies nulla. Pellentesque risus nisi, vulputate vitae iaculis non, cursus non libero. Vestibulum tristique tellus massa, a tristique enim mattis ullamcorper.",
+      "status": "default"
+    },
+    {
+      "groupProductId": 1,
+      "id": 2,
+      "title": "reprehenderit est deserunt velit ipsam",
+      "content": "Nulla non ultricies nulla. Pellentesque risus nisi, vulputate vitae iaculis non, cursus non libero. Vestibulum tristique tellus massa, a tristique enim mattis ullamcorper.",
+      "status": "public"
+    },
+    {
+      "groupProductId": 1,
+      "id": 3,
+      "title": "officia porro iure quia iusto qui ipsa ut modi",
+      "content": "Nulla non ultricies nulla. Pellentesque risus nisi, vulputate vitae iaculis non, cursus non libero.",
+      "status": "public"
+    },
+    {
+      "groupProductId": 1,
+      "id": 4,
+      "title": "culpa odio esse rerum omnis laboriosam voluptate repudiandae",
+      "content": "Nulla non ultricies nulla. Pellentesque risus nisi, vulputate vitae iaculis non, cursus non libero. Vestibulum tristique tellus massa, a tristique enim mattis ullamcorper.",
+      "status": "default"
+    },
+    {
+      "groupProductId": 1,
+      "id": 5,
+      "title": "natus nisi omnis corporis facere molestiae rerum in",
+      "content": "Nulla non ultricies nulla. Pellentesque risus nisi, vulputate vitae iaculis non, cursus non libero. Vestibulum tristique tellus massa, a tristique enim mattis ullamcorper.",
+      "status": "public"
+    },
+    {
+      "groupProductId": 1,
+      "id": 6,
+      "title": "Vestibulum tristique tellus massa",
+      "content": "Pellentesque risus nisi, vulputate vitae iaculis non, cursus non libero. Vestibulum tristique tellus massa, a tristique enim mattis ullamcorper.",
+      "status": "public"
+    },
+    {
+      "groupProductId": 1,
+      "id": 7,
+      "title": "officia delectus consequatur vero aut veniam explicabo molestias",
+      "content": "Nulla non ultricies nulla. Pellentesque risus nisi, vulputate vitae iaculis non, cursus non libero. Vestibulum tristique tellus massa, a tristique enim mattis ullamcorper.",
+      "status": "default"
+    },
+    {
+      "groupProductId": 1,
+      "id": 8,
+      "title": "aut porro officiis laborum odit ea laudantium corporis",
+      "content": "Nulla non ultricies nulla. Vestibulum tristique tellus massa, a tristique enim mattis ullamcorper.",
+      "status": "public"
+    },
+    {
+      "groupProductId": 1,
+      "id": 9,
+      "title": "qui eius qui autem sed",
+      "content": "Pellentesque risus nisi, vulputate vitae iaculis non, cursus non libero. Vestibulum tristique tellus massa, a tristique enim mattis ullamcorper.",
+      "status": "public"
+    },
+    {
+      "groupProductId": 1,
+      "id": 10,
+      "title": "beatae et provident et ut vel",
+      "content": "Nulla non ultricies nulla. Pellentesque risus nisi, vulputate vitae iaculis non, cursus non libero. Vestibulum tristique tellus massa, a tristique enim mattis ullamcorper.",
+      "status": "default"
+    }
+  ]
+}

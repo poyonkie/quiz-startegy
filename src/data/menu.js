@@ -4,11 +4,7 @@ export default [
     "url": "/",
   },
   {
-    "title": "Briefly",
-    "url": "/brief"
-  },
-  {
-    "title": "Gallery",
-    "url": "/gallery"
+    "title": "Products",
+    "url": "/products"
   }
 ];

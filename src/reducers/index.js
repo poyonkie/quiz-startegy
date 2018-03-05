@@ -5,11 +5,11 @@ import { combineReducers } from 'redux';
 import device from './deviceReducer';
 
 // App Reducers
-import gallery from '../App/sections/Gallery/reducer';
+import products from '../App/sections/Products/actions/reducer';
 
 const rootReducer = combineReducers({
   device,
-  gallery
+  products
 });
 
 export default rootReducer;

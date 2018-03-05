@@ -8,6 +8,13 @@ export function isFirstRender(items) {
   return items && items.length === 0 || !isDefined(items);
 }
 
+export function arrayToObject(array) {
+  return array.reduce((obj, item) => {
+    obj[Object.keys(item)[0]] = Object.values(item)[0]
+    return obj
+  }, {})
+};
+
 export function getFormData(formData, returnElementsArray = false) {
   const validTypes = ['text', 'number', 'checkbox', 'password', 'radio', 'color', 'date', 'datetime', 'datetime-local', 'email', 'month', 'number', 'range', 'search', 'tel', 'time', 'url', 'week'];
   const testValidTypes = elemnType => validTypes.reduce((bffr, itm) => {

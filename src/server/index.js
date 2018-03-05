@@ -14,8 +14,7 @@ import config from '../config';
 import webpackConfig from '../../webpack.config.babel';
 
 // API
-import membersApi from './api/members.js';
-import galleryApi from './api/gallery.js';
+import productsApi from './api/products.js';
 
 // Helpers
 import * as hbsHelper from '../lib/handlebars';
@@ -58,8 +57,7 @@ app.use((req, res, next) => {
 });
 
 // API dispatch
-app.use('/api/members', membersApi);
-app.use('/api/gallery', galleryApi);
+app.use('/api/products', productsApi);
 
 // Sending all traffic to React
 app.get('*', (req, res) => {
