@@ -1,5 +1,5 @@
 // Dependencies
-import React from 'react';
+import React, { Component } from 'react';
 
 // Assets
 // import './styles.css';
@@ -15,3 +15,9 @@ const FormWrapper = props =>(
 )
 
 export default FormWrapper;
+
+// Helpers about
+export function onChangeHandler(event, setState) {
+  const inputState = {[event.target.name]: event.target.value};
+  this.setState(inputState);
+}

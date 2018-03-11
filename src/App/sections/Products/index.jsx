@@ -15,32 +15,27 @@ import FormWrapper from 'FormWrapper';
 
 // Components
 import ProductItem from './components/ProductItem';
-import AddProductForm from './components/AddProductForm';
-import EditProductForm from './components/EditProductForm';
+import ProductFormAdd from './components/ProductFormAdd';
+import ProductFormEdit from './components/ProductFormEdit';
 
 // Constants
 import { CONSTANTS } from 'CONST_app';
 const { SECTIONS:{PRODUCTS:_CONST} } = CONSTANTS;
 
+// sectionModel
+import { navMenu } from './sectionModel';
+
 // Assets
-import './styles.css';
+import './Products.css';
 
 // Actions
 import * as actions from './actions';
 
-const navMenu = [
-            {title: 'All', value: 'all'},
-            {title: 'Public', value: 'public'},
-            {title: 'Default', value: 'default'},
-            null,
-            {title: 'Trash', value: 'trash'},
-          ]
-
 const navMenuStyle = 'navMenuStyle';
 
 const modalGuests = {
-  'add': AddProductForm,
-  'edit': EditProductForm
+  'add': ProductFormAdd,
+  'edit': ProductFormEdit
 }
 
 class Products extends Component {
@@ -56,8 +51,8 @@ class Products extends Component {
 
     this.controlBarMenuHandler = this.controlBarMenuHandler.bind(this);
     this.productItemEventHandler = this.productItemEventHandler.bind(this);
-    this.addProductHandleSubmit = this.addProductHandleSubmit.bind(this);
-    this.addProductHandleCancel = this.addProductHandleCancel.bind(this);
+    this.productFormHandleSubmit = this.productFormHandleSubmit.bind(this);
+    this.productFormHandleCancel = this.productFormHandleCancel.bind(this);
     this.renderModal = this.renderModal.bind(this);
   }
 
@@ -94,7 +89,7 @@ class Products extends Component {
     }
   }
 
-  addProductHandleSubmit(event) {
+  productFormHandleSubmit(event) {
     const dataForm = getFormData(event.target);
     if (this.state.editId) {
       this.props.editProduct(arrayToObject(dataForm));
@@ -107,7 +102,7 @@ class Products extends Component {
     event.preventDefault();
   }
 
-  addProductHandleCancel(event) {
+  productFormHandleCancel(event) {
     this.setState({showModal:false});
   }
 
@@ -164,8 +159,8 @@ class Products extends Component {
           >
           { Guest
             ? <FormWrapper
-                onSubmit={ this.addProductHandleSubmit }
-                onCancel={ this.addProductHandleCancel }>
+                onSubmit={ this.productFormHandleSubmit }
+                onCancel={ this.productFormHandleCancel }>
                 <Guest {...guestProps} titleLabel='Title' contentLabel='Content' />
               </FormWrapper>
             : <span>º- Modal container -º</span>}

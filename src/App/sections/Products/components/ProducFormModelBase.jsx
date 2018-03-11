@@ -1,8 +1,8 @@
 // Dependencies
 import React from 'react';
 
-const FormModelBaseProducItem = props =>
-  <div className="FormModelBaseProducItem">
+const ProducFormModelBase = props =>
+  <div className="ProducFormModelBase">
     <input type="hidden" name="id" value={props.id} onChange={ props.onChange } />
     <div>
       <div><label>{props.titleLabel}</label></div>
@@ -21,4 +21,4 @@ const FormModelBaseProducItem = props =>
       :null }
   </div>
 
-export default FormModelBaseProducItem;
+export default ProducFormModelBase;
