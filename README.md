@@ -1,7 +1,9 @@
-# Quiz requirement implemented.
+# Setting Webpack CommonsChunkPlugin
 
-> 'React' & 'Redux'.
+> webpack.optimize.CommonsChunkPlugin
 
+### Enhancement summary
+webpack-split-chunks devDependence module was removed insted use webpack.optimize.CommonsChunkPlugin, built-in Webpack feature.
 
 ## Installation
 

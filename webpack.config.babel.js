@@ -1,7 +1,6 @@
 // Dependences
 import webpack from 'webpack';
 import path from 'path';
-import ChunksPlugin from 'webpack-split-chunks';
 
 // Config
 import config from './src/config';
@@ -20,11 +19,11 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 const getDevtool = () => 'cheap-module-eval-source-map';
 
 const getEntry = () => {
-  const entry = [
-    PATHS.index
-  ]
+  const entry = {
+    main: [PATHS.index]
+  }
   if (isDevelopment) {
-    entry.push('webpack-hot-middleware/client?reload=true');
+    entry.main.push('webpack-hot-middleware/client?reload=true');
   }
   return entry;
 };
@@ -37,10 +36,14 @@ const getOutput = () => ({
 
 const getPlugins = () => {
   const plugins = [
-    //new ChunksPlugin({
-    //  to: 'vendor',
-    //  test: /node_modules/
-    //})
+    // Split output files
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.bundle.js',
+      minChunks: function(module){
+        return module.context && module.context.includes("node_modules");
+      }
+    })
   ];
   if (isDevelopment) {
     plugins.push(
