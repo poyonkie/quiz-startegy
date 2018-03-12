@@ -7,14 +7,24 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import open from 'open';
 import exphbs from 'express-handlebars';
 
+// Express App
+const app = express();
+
+/*
+ * APIs
+ */
+// Products
+import productsApi from './api/products.js';
+// dispatch
+app.use('/api/products', productsApi);
+
+
 // Config
-import config from '../config';
+import { server } from '../config';
+const { views, serverPort, baseUrl } = server;
 
 // Webpack configuration
 import webpackConfig from '../../webpack.config.babel';
-
-// API
-import productsApi from './api/products.js';
 
 // Helpers
 import * as hbsHelper from '../lib/handlebars';
@@ -25,21 +35,18 @@ import { isMobile } from '../lib/utils/device';
 // Environment
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-// Express App
-const app = express();
-
-// Public
-app.use(express.static(path.resolve(__dirname, '../public')));
+// Public (Static page)
+//app.use(express.static(path.resolve(__dirname, './public')));
 
 // Handlebars setup
-app.engine(config.views.engine, exphbs({
-  extname: config.views.extension,
+app.engine(views.engine, exphbs({
+  extname: views.extension,
   helpers: hbsHelper
 }));
 
 // View Engine Setup
-app.set('views', path.resolve(__dirname, config.views.path));
-app.set('view engine', config.views.engine);
+app.set('views', path.resolve(__dirname, views.path));
+app.set('view engine', views.engine);
 
 // Webpack Compiler
 const webpackCompiler = webpack(webpackConfig);
@@ -56,9 +63,6 @@ app.use((req, res, next) => {
   return next();
 });
 
-// API dispatch
-app.use('/api/products', productsApi);
-
 // Sending all traffic to React
 app.get('*', (req, res) => {
   res.render('frontend/index', {
@@ -67,8 +71,8 @@ app.get('*', (req, res) => {
 });
 
 // Listen port
-app.listen(config.serverPort, err => {
+app.listen(serverPort, err => {
   if(!err){
-    open(`${config.baseUrl}`);
+    open(`${baseUrl}`);
   }
 })

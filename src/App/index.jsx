@@ -10,7 +10,7 @@ import Header from './_globals/Header';
 import Footer from './_globals/Footer';
 import Content from './_globals/Content';
 
-import items from '../data/menu';
+import { header, footer } from '../fixedData';
 
 class App extends Component {
   static propTypes = {
@@ -18,12 +18,12 @@ class App extends Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, title, menu } = this.props;
     return (
       <div className="App">
-        <Header title="App Title" items={items} />
+        <Header title={ title || header.title } items={ menu || header.menu } />
         <Content body={ children } />
-        <Footer copyrigth="&copy App footer" />
+        <Footer copyrigth={ footer.copyrigth } />
       </div>
     );
   }

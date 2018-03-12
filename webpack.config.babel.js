@@ -3,7 +3,7 @@ import webpack from 'webpack';
 import path from 'path';
 
 // Config
-import config from './src/config';
+import { aliasResolve } from './src/config';
 
 // Paths
 const PATHS = {
@@ -40,9 +40,7 @@ const getPlugins = () => {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.bundle.js',
-      minChunks: function(module){
-        return module.context && module.context.includes("node_modules");
-      }
+      minChunks: module => module.context && module.context.includes("node_modules")
     })
   ];
   if (isDevelopment) {
@@ -92,7 +90,7 @@ const getResolve = () => ({
     "node_modules",
     PATHS.base
   ],
-  alias: config.aliasResolve
+  alias: aliasResolve
 });
 
 // Webpack Config

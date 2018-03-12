@@ -1,9 +1,9 @@
-# Setting Webpack CommonsChunkPlugin
+# Improve foldering scaffolding and settings
 
 > webpack.optimize.CommonsChunkPlugin
 
 ### Enhancement summary
-webpack-split-chunks devDependence module was removed insted use webpack.optimize.CommonsChunkPlugin, built-in Webpack feature.
+Split and re assign project foldering scaffolding. Setting more readable and reliable.
 
 ## Installation
 

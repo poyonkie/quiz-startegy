@@ -17,7 +17,7 @@ import './index.css';
 import configureStore from './lib/configureStore';
 
 // Reducers
-import rootReducer from './reducers';
+import rootReducer from './App/rootReducer';
 
 // Bluebird configuration
 window.Promise = Bluebird;

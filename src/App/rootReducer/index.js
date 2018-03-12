@@ -5,7 +5,7 @@ import { combineReducers } from 'redux';
 import device from './deviceReducer';
 
 // App Reducers
-import products from '../App/sections/Products/actions/reducer';
+import products from '../sections/Products/actions/reducer';
 
 const rootReducer = combineReducers({
   device,

@@ -2,7 +2,7 @@
 import queryString from 'query-string';
 
 // Config
-import config from '../../config';
+import { server } from '../../config';
 
 export function apiFetch(endpoint, options = {}, query = false) {
   let qs;
@@ -32,7 +32,7 @@ export function apiEndpoint(endpoint, qs) {
     query = `?${qs}`
   }
 
-  return `${config.api.url}${endpoint}${query}`;
+  return `${server.api.url}${endpoint}${query}`;
 }
 
 export function apiOptions(option = {}) {
