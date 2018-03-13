@@ -9,7 +9,7 @@ class Home extends Component {
   }
 
   render() {
-    const { isMobile } = this.props;
+    const { isMobile, updateDimensions } = this.props;
     return (
       <div style={{textAlign: 'center'}}>
       Home today!!!

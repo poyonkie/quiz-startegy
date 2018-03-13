@@ -10,7 +10,7 @@ const { COMMONS:{ITEMLIST:_CONST} } = CONSTANTS;
 import './styles.css';
 
 const ItemList = props => {
-  const { itemList, itemListActiveItem, children } = props;
+  const { itemList, itemListActiveItem, children, onChange } = props;
 
   const fillOutItemChild = itemData => React.Children.map(children, child => {
     const prevProps = child.props;

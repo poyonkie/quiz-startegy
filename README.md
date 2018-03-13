@@ -1,9 +1,9 @@
-# Improve foldering scaffolding and settings
+# Dynamic sticky footer regarding content
 
-> webpack.optimize.CommonsChunkPlugin
+> Router context -> updateDimensions. decorate Route -> PropsRoute
 
-### Enhancement summary
-Split and re assign project foldering scaffolding. Setting more readable and reliable.
+### Feature summary
+Adjust footer regarding content & loading data. Taking advantage of context Router to trigger `updateDimensions` when route changes and wraper Router `PropsRoute` to pass props to component of route and trigger the same updateDimensions` when data changes.
 
 ## Installation
 

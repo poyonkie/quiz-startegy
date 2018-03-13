@@ -56,8 +56,7 @@ class Products extends Component {
     this.renderModal = this.renderModal.bind(this);
   }
 
-  /*
-   * React methods
+  /* React methods
    */
   componentWillMount() {
     if (!this.props.products.length > 0) {
@@ -65,11 +64,31 @@ class Products extends Component {
     }
   }
 
-  /*
-   * Own methods
+  componentDidUpdate() {
+    const { products, updateDimensions } = this.props;
+    if (this.state.products !== products) {
+      this.setState({ products }, updateDimensions);
+    }
+
+  }
+
+  /* Own methods
    */
+  renderModal(guest, moreState) {
+    if (Object.keys(modalGuests).find(g => g === guest)) {
+      this.setState({
+        showModal:true,
+        modalGuestTemplate: modalGuests[guest],
+        ...moreState
+      });
+    } else {
+      console.log(guest, ' event disallow');
+    }
+  }
+
   controlBarMenuHandler(event) {
     this.setState({ navMenuActiveItem: event.target.value });
+    this.props.filterProducts(event.target.value);
   }
 
   productItemEventHandler(event) {
@@ -106,30 +125,15 @@ class Products extends Component {
     this.setState({showModal:false});
   }
 
-  renderModal(guest, moreState) {
-    if (Object.keys(modalGuests).find(g => g === guest)) {
-      this.setState({
-        showModal:true,
-        modalGuestTemplate: modalGuests[guest],
-        ...moreState
-      });
-    } else {
-      console.log(guest, ' event disallow');
-    }
-  }
-
+  /* Render
+   */
   render() {
-    const { navMenuActiveItem, modalTitle, showModal, modalGuestTemplate:Guest, editId } = this.state;
-    const { products } = this.props;
+    const { products, navMenuActiveItem, modalTitle, showModal, modalGuestTemplate:Guest, editId } = this.state;
     const { TITLE } = _CONST;
-    const guestProps = products.find(i => parseInt(i.id) === parseInt(editId)) || null;
+    const guestProps = products ? products.find(i => parseInt(i.id) === parseInt(editId)) : null;
     if (!isFirstRender(products)) {
       return null;
     }
-
-    const _products = navMenuActiveItem === 'all'
-      ? products.filter( product => product.status !== 'trash' )
-      : products.filter( product => product.status === navMenuActiveItem );
 
     return (
       <div>
@@ -142,15 +146,15 @@ class Products extends Component {
           <button onClick={ () => this.renderModal('add', {editId:null, modalTitle: `Add product`}) }>Add Product</button>
         </ControlBar>
 
-        <PaginatorBar chainedData={_products} />
+        <PaginatorBar chainedData={products} />
         {/*
-          <SortBar chainedData={_products} />
+          <SortBar chainedData={products} />
         */}
         <ItemList
-          itemList={ _products }>
+          itemList={ products }>
           <ProductItem onEdit={this.productItemEventHandler} onDelete={this.productItemEventHandler} />
         </ItemList>
-        <PaginatorBar chainedData={_products} />
+        <PaginatorBar chainedData={products} />
 
         <Modal
           title={ modalTitle }
@@ -171,6 +175,6 @@ class Products extends Component {
 }
 
 export default connect(state => ({
-  products: state.products.list,
+  products: state.products.filteredList,
   currentProduct: state.products.detail,
 }), actions)(Products);

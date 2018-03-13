@@ -22,5 +22,4 @@ export default function configureStore(options, rootReducer) {
     reduxImmutableStateInvariant()
   ];
   return createStore(rootReducer, initialState, applyMiddleware(...middleware));
-  //return applyMiddleware(...middleware)(createStore(rootReducer, initialState)); // <<----- Choice to bear on mind!!!
 }

@@ -17,6 +17,8 @@ export const aliasResolve = Object.freeze({
   CONST_app: 'constants/app',
   CONST_common: 'constants/commonDefault',
   API: 'lib/utils/api',
+
+  // Utils & Helpers
   Utils_FE: 'lib/utils/frontend',
 
   // Elements

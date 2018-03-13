@@ -1,3 +1,6 @@
+// Dependencies
+import React from 'react';
+
 import { isDefined } from './is';
 
 export function getNewState(state, newState) {
@@ -15,6 +18,9 @@ export function arrayToObject(array) {
   }, {})
 };
 
+/* TODO
+ * Need complete.
+ */
 export function getFormData(formData, returnElementsArray = false) {
   const validTypes = ['text', 'hidden', 'number', 'checkbox', 'password', 'radio', 'color', 'date', 'datetime', 'datetime-local', 'email', 'month', 'number', 'range', 'search', 'tel', 'time', 'url', 'week'];
   const testValidTypes = elemnType => validTypes.reduce((bffr, itm) => {
@@ -28,7 +34,6 @@ export function getFormData(formData, returnElementsArray = false) {
     .filter( (eleForm, idx, arry) => eleForm.name &&  arry.indexOf(eleForm) === idx );
 
   // select
-
   const selectRawCollection = formData.getElementsByTagName('select');
   const selectCollection = Object.values(selectRawCollection)
     .filter( (eleForm, idx, arry) => eleForm.name &&  arry.indexOf(eleForm) === idx );

@@ -6,34 +6,24 @@ import PropTypes from 'prop-types';
 import './css/Footer.css';
 
 /**
- * stateless 'Footer' component (class Component version)
- * @return {React.component} Footer component
- */
-//class Footer extends Component {
-//	static propTypes = {
-//		copyrigth: PropTypes.string
-//	}
-//
-//  render() {
-//  	const { copyrigth = '&copy React 2017' } = this.props;
-//
-//    return (
-//      <footer dangerouslySetInnerHTML={{__html: copyrigth}} />
-//    );
-//  }
-//}
-
-/**
  * stateless 'Footer' component (pure function version)
  * @return {React.component} Footer component
  */
 const Footer = props => {
-	const { copyrigth = '&copy React 2017' } = props;
-	return <footer dangerouslySetInnerHTML={{__html: copyrigth }} />
+  const { copyrigth = '&copy React 2017' } = props;
+  return <footer dangerouslySetInnerHTML={{__html: copyrigth }} style={ props.bottomFix && style.bottomFix} />
 }
 
 Footer.propTypes = {
-	copyrigth: PropTypes.string
+  copyrigth: PropTypes.string
+}
+
+const style = {
+  bottomFix: {
+    position: 'fixed',
+    width: '100%',
+    bottom: '0px'
+  }
 }
 
 export default Footer;
